@@ -1,0 +1,7 @@
+login pa da shrani v local storage
+home view pa menu 
+prikazi za račune pa uporabnike 
+brišeš svoje račune 
+home akcija v kompnentah
+dodajanje računa
+pogled uporanbika 
