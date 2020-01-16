@@ -34,10 +34,16 @@ export default class Login extends Component {
 
     doLogin = async () => {
         let { gmail, password } = this.state;
+        if(!gmail || !password) {
+            Alert.alert("Warning!", "Fill out the form!");
+            return;
+        }
         let response = await Methods.login(gmail, password);
         if(response.result) {
             await AsyncStorage.setItem('token', response.id);
             this.props.home();
+        } else {
+            Alert.alert("Warning!", "Failed to login!");
         }
     }
 

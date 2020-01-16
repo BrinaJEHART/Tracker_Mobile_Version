@@ -35,6 +35,10 @@ export default class Login extends Component {
 
     doRegister = async () => {
         let { fullname, gmail, password } = this.state;
+        if(!fullname || !gmail || !password) {
+            Alert.alert("Warning!", "Fill out the form!");
+            return;
+        }
         console.log(fullname, gmail, password, "tole pošlje iz register.js");
         let result = await Methods.register(fullname, gmail, password);
         console.log(result);

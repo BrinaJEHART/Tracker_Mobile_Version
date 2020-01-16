@@ -36,7 +36,7 @@ export default class Users extends React.Component {
                                 onPress={() => setIndex(i)}
                                 leftAvatar={{ source: { uri: "http://gsdl.org.in/gsdl%20image/user.png" } }}
                                 title={user.fullname}
-                                subtitle={user.gmail}
+                                subtitle={user.gmail + "\n" + "Balance: " + user.amount + "€"}
                                 bottomDivider
                             />
                         )}

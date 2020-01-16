@@ -1,8 +1,20 @@
 import * as React from 'react';
-import { Text, View, StyleSheet, TouchableHighlight, ImageBackground } from 'react-native';
+import { Text, View, StyleSheet, TouchableHighlight, ImageBackground, Alert } from 'react-native';
 import Constants from 'expo-constants';
+import Methods from './../Api/Methods';
 
 export default class Home extends React.Component {
+
+    async pickUserWithLowestBalance() {
+        let pUsers = await Methods.getUsers();
+        let lowestAmount = pUsers[0].amount;
+        let result = pUsers.filter(ele => ele.amount == lowestAmount).map(ele => ele.fullname).join(", ");
+        Alert.alert(
+            'Amount! ' + lowestAmount + "€",
+            result
+        );
+    }
+    
     render() {
         return (
             <ImageBackground source={{ uri: "https://live.staticflickr.com/1890/44299265912_eb6819d65c_b.jpg" }} style={{ width: '100%', height: '100%' }}>
@@ -12,6 +24,10 @@ export default class Home extends React.Component {
 
                     <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]} onPress={this.props.users}>
                         <Text style={styles.loginText}>{"Users"}</Text>
+                    </TouchableHighlight>
+
+                    <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]} onPress={this.pickUserWithLowestBalance}>
+                        <Text style={styles.loginText}>{"Next Buyer"}</Text>
                     </TouchableHighlight>
 
                     <TouchableHighlight style={[styles.buttonContainer, styles.loginButton]} onPress={this.props.invoices}>
